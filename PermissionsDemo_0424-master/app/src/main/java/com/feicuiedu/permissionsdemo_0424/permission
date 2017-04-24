@@ -1,0 +1,79 @@
+1. 查看：
+    通过adb命令来查看：adb 安卓调试桥
+    可以配置一下adb.exe的环境变量
+    adb.exe 目录在：SDK安装的路径\platform-tools
+
+2. 危险权限的分组：
+
+    // 通讯录
+    group:android.permission-group.CONTACTS
+      permission:android.permission.WRITE_CONTACTS
+      permission:android.permission.GET_ACCOUNTS
+      permission:android.permission.READ_CONTACTS
+
+    // 电话
+    group:android.permission-group.PHONE
+      permission:android.permission.READ_CALL_LOG
+      permission:android.permission.READ_PHONE_STATE
+      permission:android.permission.CALL_PHONE
+      permission:android.permission.WRITE_CALL_LOG
+      permission:android.permission.USE_SIP
+      permission:android.permission.PROCESS_OUTGOING_CALLS
+      permission:com.android.voicemail.permission.ADD_VOICEMAIL
+
+    // 日历
+    group:android.permission-group.CALENDAR
+      permission:android.permission.READ_CALENDAR
+      permission:android.permission.WRITE_CALENDAR
+
+    // 相机
+    group:android.permission-group.CAMERA
+      permission:android.permission.CAMERA
+
+    // 身体传感器
+    group:android.permission-group.SENSORS
+      permission:android.permission.BODY_SENSORS
+
+    // 定位
+    group:android.permission-group.LOCATION
+      permission:android.permission.ACCESS_FINE_LOCATION
+      permission:com.google.android.gms.permission.CAR_SPEED
+      permission:android.permission.ACCESS_COARSE_LOCATION
+
+    // 存储
+    group:android.permission-group.STORAGE
+      permission:android.permission.READ_EXTERNAL_STORAGE
+      permission:android.permission.WRITE_EXTERNAL_STORAGE
+
+    // 麦克风
+    group:android.permission-group.MICROPHONE
+      permission:android.permission.RECORD_AUDIO
+
+    // 短信
+    group:android.permission-group.SMS
+      permission:android.permission.READ_SMS
+      permission:android.permission.RECEIVE_WAP_PUSH
+      permission:android.permission.RECEIVE_MMS
+      permission:android.permission.RECEIVE_SMS
+      permission:android.permission.SEND_SMS
+      permission:android.permission.READ_CELL_BROADCASTS
+
+3. 关于处理的过程
+    1. 在清单文件中添加权限信息
+    2. 普通的权限会系统自动授权，危险的权限系统授权需要判断
+    处理：
+    1. 检测清单文件里的权限信息有没有授权成功
+    2. 如果成功，可以执行操作，没有成功，需要向用户去申请授权
+    3. 权限结果的回调：用户同意了授权，可以执行相应的操作
+                      用户拒绝了权限，提醒用户：弹个吐丝
+                      权限被彻底拒绝的时候，不会再弹提示框，
+                            如果用户再需要此项权限，提示一下：弹吐司、对话框
+
+总结：
+1. 知道危险权限
+2. 权限的流程：
+    1. 检测：ActivityCompat.checkSelfPermission();
+    2. 申请：ActivityCompat.requestPermissions();
+    3. 回调：重写的onRequestPermissionsResult方法里面作判断来处理
+            用户同意：执行事件
+            拒绝：友好的提示用户
