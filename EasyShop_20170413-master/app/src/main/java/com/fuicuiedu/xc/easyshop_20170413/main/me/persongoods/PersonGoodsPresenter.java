@@ -1,5 +1,7 @@
 package com.fuicuiedu.xc.easyshop_20170413.main.me.persongoods;
 
+import android.service.carrier.CarrierMessagingService;
+
 import com.fuicuiedu.xc.easyshop_20170413.main.shop.ShopView;
 import com.fuicuiedu.xc.easyshop_20170413.model.CachePreferences;
 import com.fuicuiedu.xc.easyshop_20170413.model.GoodsResult;
@@ -9,6 +11,7 @@ import com.google.gson.Gson;
 import com.hannesdorfmann.mosby.mvp.MvpNullObjectBasePresenter;
 
 import java.io.IOException;
+import java.io.StringWriter;
 
 import okhttp3.Call;
 
@@ -86,5 +89,10 @@ public class PersonGoodsPresenter extends MvpNullObjectBasePresenter<ShopView> {
                 }
             }
         });
+
+
+
+
+        }
     }
-}
+

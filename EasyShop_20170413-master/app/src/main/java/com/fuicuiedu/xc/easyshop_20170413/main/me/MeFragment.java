@@ -59,6 +59,7 @@ public class MeFragment extends Fragment {
         }else{
             tv_login.setText(CachePreferences.getUser().getNick_name());
         }
+         
         ImageLoader.getInstance()
                 .displayImage(EasyShopApi.IMAGE_URL + CachePreferences.getUser().getHead_Image()
                         ,iv_user_head, AvatarLoadOptions.build());
@@ -89,7 +90,7 @@ public class MeFragment extends Fragment {
                 break;
 
         }
-
+        
 
 
     }

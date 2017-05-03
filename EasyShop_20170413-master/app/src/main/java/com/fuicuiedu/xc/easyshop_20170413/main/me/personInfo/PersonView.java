@@ -15,4 +15,6 @@ public interface PersonView extends MvpView{
     void showMsg(String msg);
     //用来更新头像
     void updataAvatar(String url);
+
+
 }
